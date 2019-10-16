@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ToDo } from './todo-model';
 
 @Component({
@@ -13,10 +13,12 @@ export class TodoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.todoList.push(new ToDo('Title1', 'Description', 'TimeStamp'));
-    this.todoList.push(new ToDo('Title2', 'Description', 'TimeStamp'));
-    this.todoList.push(new ToDo('Title3', 'Description', 'TimeStamp'));
-    this.todoList.push(new ToDo('Title4', 'Description', 'TimeStamp'));
   }
+
+  addItem(item: ToDo) {
+    this.todoList.push(item);
+  }
+
+
 
 }

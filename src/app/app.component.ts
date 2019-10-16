@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { TodoComponent } from './todo/todo.component';
+import { ToDo } from './todo/todo-model';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title: string;
   description: string;
+
+  @ViewChild(TodoComponent) todoComp: TodoComponent;
+
+  newTodoItem() {
+    this.todoComp.addItem(new ToDo(this.title, this.description));
+  }
 
 }

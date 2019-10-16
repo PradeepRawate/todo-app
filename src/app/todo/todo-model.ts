@@ -3,9 +3,9 @@ export class ToDo {
     description: string;
     timestamp: string;
 
-    constructor(title: string, description: string, timestamp: string) {
+    constructor(title: string, description: string) {
         this.title = title;
         this.description = description;
-        this.timestamp = timestamp;
+        this.timestamp = new Date().toString();
     }
 }
