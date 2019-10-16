@@ -1,0 +1,13 @@
+<div class="container">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of todoList">
+        <span>
+          <div class="title"><strong>{{item.title}}</strong></div>
+          <div class="desc">
+            {{item.description}}
+          </div>
+          <div class="timestamp">{{item.timestamp}}</div>
+        </span>
+      </li>
+    </ul>
+</div>
