@@ -9,6 +9,7 @@ import { ToDo } from './todo-model';
 export class TodoComponent implements OnInit {
 
   todoList: ToDo[] = [];
+  completedList: ToDo[] = [];
 
   constructor() { }
 
@@ -17,6 +18,11 @@ export class TodoComponent implements OnInit {
 
   addItem(item: ToDo) {
     this.todoList.push(item);
+  }
+
+  markAsDone(item: ToDo, index: number) {
+    this.todoList.splice(index, 1);
+    this.completedList.push(item);
   }
 
 

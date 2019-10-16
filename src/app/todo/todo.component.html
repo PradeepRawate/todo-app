@@ -1,13 +1,21 @@
 <div class="container">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of todoList">
-        <span>
-          <h6 class="timestamp float-right">{{item.timestamp | date :'dd-MM-yyyy hh-mm-ss'}}</h6>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of todoList; let i=index">
+      <div class="row">
+        <div class="col-md-2" style="align-self: center;">
+            <input type="checkbox" [(ngModel)]="item.isDone" aria-label="Checkbox for following text input">
+        </div>
+        <div class="col-md-8">
+          <h6 class="timestamp float-right">{{item.timestamp | date :'medium'}}</h6>
           <div class="title"><strong>{{item.title}}</strong></div>
           <div class="desc">
             {{item.description}}
           </div>
-        </span>
-      </li>
-    </ul>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-danger" (click)="markAsDone(item, index)">Remove</button>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>

@@ -9,3 +9,7 @@
 .todoAction {
     padding: 2% 0%;
 }
+
+.addBtn {
+    align-self: flex-end;
+}
