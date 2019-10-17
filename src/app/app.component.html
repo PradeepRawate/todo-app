@@ -9,18 +9,6 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div> -->
     </nav>
     <div>
       <div class="todoAction">
@@ -34,11 +22,11 @@
             <textarea id="description" class="form-control" [(ngModel)]="description" placeholder="Description" name="description"></textarea>
           </div>
           <div class="col-md-1 addBtn">
-              <button type="button" class="btn btn-primary" (click)="newTodoItem()">Add</button>
+              <button type="button" class="btn btn-primary" [disabled]="!(title && description)" (click)="newTodoItem()">Add</button>
           </div>
         </div>
       </div>
-      <app-todo></app-todo>
+      <app-todo [todoList]="todoList" (itemCompleted)="markAsDone($event)" (itemRemoved)="removeItem($event)"></app-todo>
     </div>
   </div>
 

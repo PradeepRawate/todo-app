@@ -1,21 +1,46 @@
-<div class="container">
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of todoList; let i=index">
-      <div class="row">
-        <div class="col-md-2" style="align-self: center;">
-            <input type="checkbox" [(ngModel)]="item.isDone" aria-label="Checkbox for following text input">
-        </div>
-        <div class="col-md-8">
-          <h6 class="timestamp float-right">{{item.timestamp | date :'medium'}}</h6>
-          <div class="title"><strong>{{item.title}}</strong></div>
-          <div class="desc">
-            {{item.description}}
+<div class="container row">
+  <div class="col-md-8">
+    <div>ToDo List</div>
+    <ul class="list-group">
+      <ng-container *ngFor="let item of todoList; let i=index">
+        <li *ngIf="!item.isDone" class="list-group-item bg-light">
+          <div class="row">
+            <!-- <div class="col-md-2" style="align-self: center;">
+                <input type="checkbox" [(ngModel)]="item.isDone" aria-label="Checkbox for following text input">
+              </div> -->
+            <div class="col-md-8">
+              <h6 class="timestamp float-right">{{item.timestamp | date :'medium'}}</h6>
+              <div class="title"><strong>{{item.title}}</strong></div>
+              <div class="desc">
+                {{item.description}}
+              </div>
+            </div>
+            <div class="col-md-4" style="align-self: center;">
+              <button type="button" class="btn btn-outline-success" (click)="markAsDone(item, i)">Completed</button>
+              &nbsp;
+              <button type="button" class="btn btn-outline-danger" (click)="removeItem(item, i)">Remove</button>
+            </div>
           </div>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-outline-danger" (click)="markAsDone(item, index)">Remove</button>
-        </div>
-      </div>
-    </li>
-  </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="col-md-4">
+      <div>Completed List</div>
+    <ul class="list-group">
+      <ng-container *ngFor="let item of todoList; let i=index">
+        <li *ngIf="item.isDone" class="list-group-item completed">
+          <div class="row">
+            <div class="col-md-12">
+              <h6 class="timestamp float-right">{{item.timestamp | date :'medium'}}</h6>
+              <div class="title"><strong>{{item.title}}</strong></div>
+              <div class="desc">
+                {{item.description}}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
 </div>

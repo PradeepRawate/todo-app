@@ -10,11 +10,22 @@ import { ToDo } from './todo/todo-model';
 export class AppComponent {
   title: string;
   description: string;
+  todoList: ToDo[] = [];
 
   @ViewChild(TodoComponent) todoComp: TodoComponent;
 
   newTodoItem() {
-    this.todoComp.addItem(new ToDo(this.title, this.description));
+    this.todoList.push(new ToDo(this.title, this.description));
+    this.title = this.description = null;
+  }
+
+  markAsDone(itemObject: any) {
+    console.log('item completed: ', itemObject.item);
+  }
+
+  removeItem(itemObject: any) {
+    console.log('item removed: ', itemObject.item);
+    this.todoList.splice(itemObject.index, 1);
   }
 
 }

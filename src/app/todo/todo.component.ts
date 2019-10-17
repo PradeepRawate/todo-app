@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToDo } from './todo-model';
 
 @Component({
@@ -8,21 +8,24 @@ import { ToDo } from './todo-model';
 })
 export class TodoComponent implements OnInit {
 
-  todoList: ToDo[] = [];
-  completedList: ToDo[] = [];
+  @Input() todoList: ToDo[];
+
+  @Output() itemRemoved = new EventEmitter();
+
+  @Output() itemCompleted = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  addItem(item: ToDo) {
-    this.todoList.push(item);
+  markAsDone(item: ToDo, index: number) {
+    item.isDone = true;
+    this.itemCompleted.emit({index, item});
   }
 
-  markAsDone(item: ToDo, index: number) {
-    this.todoList.splice(index, 1);
-    this.completedList.push(item);
+  removeItem(item: ToDo, index: number) {
+    this.itemRemoved.emit({index, item});
   }
 
 
